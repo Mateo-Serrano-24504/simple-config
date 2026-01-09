@@ -1,0 +1,25 @@
+{
+  "name": "@simple-config/utilities",
+  "version": "1.0.0",
+  "type": "module",
+  "private": false,
+  "description": "Initialize ESLint, Prettier, Husky and lint-staged for modern TypeScript projects",
+  "keywords": [
+    "eslint",
+    "prettier",
+    "husky",
+    "lint-staged",
+    "typescript",
+    "cli"
+  ],
+  "files": [
+    "scripts/",
+    "templates/"
+  ],
+  "bin": {
+    "dev-config": "./scripts/init.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
