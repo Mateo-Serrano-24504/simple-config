@@ -5,7 +5,7 @@ import {
   installDependencies,
   configureHusky,
   copyConfigurationFiles
-} from '../src';
+} from '../src/index.js';
 
 assertValidNodePackage();
 installDependencies();

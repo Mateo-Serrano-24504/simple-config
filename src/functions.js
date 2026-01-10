@@ -5,12 +5,18 @@ import {
   runCommand,
   runCommandSilent,
   verifyNodePackage
-} from "./core";
-import { devDepFiles, devDeps, installCmd, installHuskyCommand, setupHuskyCommand } from "./constants.js";
+} from "./core/index.js";
+import {
+  addHuskyPrepare,
+  devDepFiles,
+  devDeps,
+  installCmd,
+  setupHuskyCommand
+} from "./constants.js";
 
+const runAddPrepareCommand = () => runCommandSilent(addHuskyPrepare);
 const runInstallCommand = (installNames) => runCommandSilent(installCmd(installNames));
 const runHuskyCommand = () => {
-  runCommand(installHuskyCommand);
   runCommand(setupHuskyCommand);
 }
 const getInstallationArguments = () => getInstallNames(devDeps);
@@ -23,6 +29,7 @@ export const assertValidNodePackage = () => {
 }
 export const installDependencies = () => {
   console.log('Installing dependencies...');
+  runAddPrepareCommand();
   runInstallCommand(getInstallationArguments());
 }
 export const configureHusky = () => {

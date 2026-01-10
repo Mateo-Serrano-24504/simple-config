@@ -58,6 +58,6 @@ export const devDepFiles = {
     },
   ],
 };
-export const installHuskyCommand =  'npx husky install';
-export const setupHuskyCommand = 'npx husky add .husky/pre-commit "npx lint-staged"';
+export const addHuskyPrepare = 'npm pkg set scripts.prepare="husky"';
 export const installCmd = (installNames) => `npm install -D ${installNames.join(' ')}`;
+export const setupHuskyCommand = 'npx husky add .husky/pre-commit "npx lint-staged"';

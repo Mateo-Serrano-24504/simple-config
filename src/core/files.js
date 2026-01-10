@@ -5,7 +5,7 @@ import {
   verifyValidFile,
   verifyValidDirectory,
   moveFromPath
-} from "./utils";
+} from "./utils/index.js";
 
 export const verifyNodePackage = () => verifyValidFile(moveFromPath(process.cwd(), 'package.json'));
 export function copyFileToFolderOrSkip(sourceFile, targetDirectory) {
