@@ -1,9 +1,9 @@
-import { getRemoteUrl, moveFromPath } from './utils/index.js'
+import { getPackageRoot, moveFromPath } from './utils/index.js'
 import { copyFileToFolderOrSkip } from './files.js'
 
 export const getTemplatesFolder = (templatesRelativePath) => {
-  const repositoryDirname = getRemoteUrl()
-  return moveFromPath(repositoryDirname, templatesRelativePath)
+  const packageRoot = getPackageRoot()
+  return moveFromPath(packageRoot, templatesRelativePath)
 }
 export const getInstallNames = (devDeps) =>
   Object.values(devDeps).map((dep) => `${dep.package}@${dep.version}`)
