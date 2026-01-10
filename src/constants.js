@@ -31,7 +31,7 @@ export const devDeps = {
     package: 'husky',
     version: '9.1.7',
   },
-};
+}
 export const devDepFiles = {
   eslint: [
     {
@@ -57,7 +57,7 @@ export const devDepFiles = {
       target: '.',
     },
   ],
-};
-export const addHuskyPrepare = 'npm pkg set scripts.prepare="husky"';
-export const installCmd = (installNames) => `npm install -D ${installNames.join(' ')}`;
-export const setupHuskyCommand = 'npx husky add .husky/pre-commit "npx lint-staged"';
+}
+export const addHuskyPrepare = 'npm pkg set scripts.prepare="husky"'
+export const installCmd = (installNames) => `npm install -D ${installNames.join(' ')}`
+export const setupHuskyCommand = 'npx husky add .husky/pre-commit "npx lint-staged"'

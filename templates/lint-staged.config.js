@@ -1,6 +1,3 @@
 export default {
-  '*.{ts,tsx,js,json}': [
-    'eslint --fix',
-    'prettier --write',
-  ],
-};
+  '*.{ts,tsx,js,json}': ['eslint --fix', 'prettier --write'],
+}

@@ -4,40 +4,40 @@ import {
   getTemplatesFolder,
   runCommand,
   runCommandSilent,
-  verifyNodePackage
-} from "./core/index.js";
+  verifyNodePackage,
+} from './core/index.js'
 import {
   addHuskyPrepare,
   devDepFiles,
   devDeps,
   installCmd,
-  setupHuskyCommand
-} from "./constants.js";
+  setupHuskyCommand,
+} from './constants.js'
 
-const runAddPrepareCommand = () => runCommandSilent(addHuskyPrepare);
-const runInstallCommand = (installNames) => runCommandSilent(installCmd(installNames));
+const runAddPrepareCommand = () => runCommandSilent(addHuskyPrepare)
+const runInstallCommand = (installNames) => runCommandSilent(installCmd(installNames))
 const runHuskyCommand = () => {
-  runCommand(setupHuskyCommand);
+  runCommand(setupHuskyCommand)
 }
-const getInstallationArguments = () => getInstallNames(devDeps);
+const getInstallationArguments = () => getInstallNames(devDeps)
 
 export const assertValidNodePackage = () => {
   if (!verifyNodePackage()) {
-    console.error('Error: package.json not found.');
-    process.exit(1);
+    console.error('Error: package.json not found.')
+    process.exit(1)
   }
 }
 export const installDependencies = () => {
-  console.log('Installing dependencies...');
-  runAddPrepareCommand();
-  runInstallCommand(getInstallationArguments());
+  console.log('Installing dependencies...')
+  runAddPrepareCommand()
+  runInstallCommand(getInstallationArguments())
 }
 export const configureHusky = () => {
-  console.log('Configuring Husky...');
-  runHuskyCommand();
+  console.log('Configuring Husky...')
+  runHuskyCommand()
 }
 export const copyConfigurationFiles = () => {
-  console.log('Copying configuration files...');
-  const templatesDirectory = getTemplatesFolder('../templates');
-  copyFilesToTargetOrSkip(devDepFiles, templatesDirectory);
+  console.log('Copying configuration files...')
+  const templatesDirectory = getTemplatesFolder('../templates')
+  copyFilesToTargetOrSkip(devDepFiles, templatesDirectory)
 }

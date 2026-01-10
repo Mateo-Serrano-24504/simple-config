@@ -4,10 +4,10 @@ import {
   assertValidNodePackage,
   installDependencies,
   configureHusky,
-  copyConfigurationFiles
-} from '../src/index.js';
+  copyConfigurationFiles,
+} from '../src/index.js'
 
-assertValidNodePackage();
-installDependencies();
-configureHusky();
-copyConfigurationFiles();
+assertValidNodePackage()
+installDependencies()
+configureHusky()
+copyConfigurationFiles()
