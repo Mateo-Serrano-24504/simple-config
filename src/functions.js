@@ -2,12 +2,11 @@ import {
   copyFilesToTargetOrSkip,
   getInstallNames,
   getTemplatesFolder,
-  runCommand,
   runCommandSilent,
   verifyNodePackage,
 } from './core/index.js'
 import {
-  addHuskyPrepare,
+  addHuskyPrepare, authorizeHuskyCommand,
   devDepFiles,
   devDeps,
   installCmd,
@@ -17,7 +16,8 @@ import {
 const runAddPrepareCommand = () => runCommandSilent(addHuskyPrepare)
 const runInstallCommand = (installNames) => runCommandSilent(installCmd(installNames))
 const runHuskyCommand = () => {
-  runCommand(setupHuskyCommand)
+  runCommandSilent(setupHuskyCommand)
+  runCommandSilent(authorizeHuskyCommand)
 }
 const getInstallationArguments = () => getInstallNames(devDeps)
 
