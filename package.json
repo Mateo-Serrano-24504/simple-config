@@ -14,7 +14,8 @@
   ],
   "files": [
     "scripts/",
-    "templates/"
+    "templates/",
+    "src/**"
   ],
   "bin": {
     "dev-config": "./scripts/init.js"
