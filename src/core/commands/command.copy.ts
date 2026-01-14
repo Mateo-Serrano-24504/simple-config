@@ -7,18 +7,21 @@ export class CommandCopy {
   private logger = new Logger();
   private command: Command;
   constructor(
-    private source: string,
+    source: string,
     private destination: string
   ) {
-    this.command = new Command(this.source, () => {
-      this.copyFileToFolderOrSkip(this.source, this.destination);
+    this.command = new Command(source, (src) => {
+      this.copyFileToFolderOrSkip(src, this.destination);
     });
   }
   run() {
     this.command.run();
   }
-  getCommand() {
+  getSource() {
     return this.command.getCommand();
+  }
+  getDestination() {
+    return this.destination;
   }
   private copyFileToFolderOrSkip(sourceFile: string, targetDirectory: string) {
     const sourceFileName = basename(sourceFile)
