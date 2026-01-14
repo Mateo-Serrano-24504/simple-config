@@ -21,7 +21,7 @@ describe('CommandInstallFactory', () => {
   it('should create a valid npm install command', () => {
     const deps = Array.from({ length: 5 }, () => makeDependency());
     const result = factory.create(deps);
-    expect(result).toEqual(
+    expect(result.getCommand()).toEqual(
       `npm i -D ${deps.map(dep => dep.version ? `${dep.name}@${dep.version}` : dep.name).join(' ')}`
     );
   });
