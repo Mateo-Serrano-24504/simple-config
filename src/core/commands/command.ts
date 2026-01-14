@@ -1,6 +1,9 @@
 export class Command {
-  constructor(private command: string) {}
-  run(runMechanism: (command: string) => void) {
-    runMechanism(this.command);
+  constructor(
+    protected command: string,
+    protected runMechanism: (command: string) => void
+  ) {}
+  run() {
+    this.runMechanism(this.command);
   }
 }

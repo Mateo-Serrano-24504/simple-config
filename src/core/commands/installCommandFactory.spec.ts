@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { faker } from '@faker-js/faker'
 import { InstallCommandFactory } from './installCommandFactory'
-import { Dependency } from './dependency'
+import { Dependency } from '../dependencies/dependency'
 
 function makeDependency(overrides: Partial<Dependency> = {}): Dependency {
   return {
