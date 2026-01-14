@@ -1,9 +1,11 @@
 {
   "name": "@mateoserrano/simple-config",
   "version": "1.1.8",
+  "description": "Initialize ESLint, Prettier, Husky and lint-staged for modern TypeScript projects",
+  "license": "MIT",
+  "author": "Mateo Serrano (https://github.com/Mateo-Serrano-24504)",
   "type": "module",
   "private": false,
-  "description": "Initialize ESLint, Prettier, Husky and lint-staged for modern TypeScript projects",
   "keywords": [
     "eslint",
     "prettier",
@@ -12,10 +14,20 @@
     "typescript",
     "cli"
   ],
+  "homepage": "https://github.com/Mateo-Serrano-24504/simple-config#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mateo-Serrano-24504/simple-config.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Mateo-Serrano-24504/simple-config/issues"
+  },
   "files": [
     "scripts/",
     "templates/",
-    "src/**"
+    "src/**",
+    "README.md",
+    "LICENSE"
   ],
   "bin": {
     "dev-config": "./scripts/init.js"

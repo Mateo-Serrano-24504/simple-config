@@ -1,5 +1,9 @@
 # Simple configuration for TypeScript development
 
+> This package is intended to be used as a development dependency.
+> No development dependency used to develop this package is necessarily
+> installed.
+
 ## Overview
 
 This package provides a quite simple configuration for common tools in
