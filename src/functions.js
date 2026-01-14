@@ -6,18 +6,19 @@ import {
   verifyNodePackage,
 } from './core/index.js'
 import {
-  addHuskyPrepare, authorizeHuskyCommand,
+  addHuskyPrepare,
   devDepFiles,
   devDeps,
   installCmd,
+  prepareHuskyCommand,
   setupHuskyCommand,
 } from './constants.js'
 
 const runAddPrepareCommand = () => runCommandSilent(addHuskyPrepare)
 const runInstallCommand = (installNames) => runCommandSilent(installCmd(installNames))
 const runHuskyCommand = () => {
+  runCommandSilent(prepareHuskyCommand)
   runCommandSilent(setupHuskyCommand)
-  runCommandSilent(authorizeHuskyCommand)
 }
 const getInstallationArguments = () => getInstallNames(devDeps)
 

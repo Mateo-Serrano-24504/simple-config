@@ -62,11 +62,7 @@ export const devDepFiles = {
     },
   ],
 }
-export const addHuskyPrepare = 'npm pkg set scripts.prepare="husky"'
+export const addHuskyPrepare = 'npm pkg set scripts.prepare="husky init"'
 export const installCmd = (installNames) => `npm install -D ${installNames.join(' ')} --save-exact`
-export const setupHuskyCommand = 'echo "' +
-  '#!/usr/bin/env sh\n' +
-  '. "$(dirname -- "$0")/_/husky.sh"\n\n' +
-  'npx lint-staged"' +
-  '> .husky/pre-commit'
-export const authorizeHuskyCommand = 'chmod +x .husky/pre-commit'
+export const prepareHuskyCommand = 'npx run prepare'
+export const setupHuskyCommand = 'npx husky add .husky/pre-commit "npx lint-staged"'
