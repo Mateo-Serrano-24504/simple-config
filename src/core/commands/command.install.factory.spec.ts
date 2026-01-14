@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { faker } from '@faker-js/faker'
-import { InstallCommandFactory } from './installCommandFactory'
-import { Dependency } from '../dependencies/dependency'
+import { CommandInstallFactory } from './command.install.factory'
+import { Dependency } from '../dependencies'
 
 function makeDependency(overrides: Partial<Dependency> = {}): Dependency {
   return {
@@ -13,10 +13,10 @@ function makeDependency(overrides: Partial<Dependency> = {}): Dependency {
   };
 }
 
-describe('InstallCommandFactory', () => {
-  let factory: InstallCommandFactory;
+describe('CommandInstallFactory', () => {
+  let factory: CommandInstallFactory;
   beforeEach(() => {
-    factory = new InstallCommandFactory();
+    factory = new CommandInstallFactory();
   });
   it('should create a valid npm install command', () => {
     const deps = Array.from({ length: 5 }, () => makeDependency());

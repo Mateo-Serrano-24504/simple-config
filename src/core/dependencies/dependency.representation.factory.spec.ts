@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { DependencyRepresentationFactory } from './dependencyRepresentationFactory'
+import { DependencyRepresentationFactory } from './dependency.representation.factory'
 
 describe('DependencyRepresentationFactory', () => {
   let factory: DependencyRepresentationFactory;
