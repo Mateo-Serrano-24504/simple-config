@@ -1,4 +1,5 @@
-import { getPackageRoot, moveFromPath } from './utils/index.js'
+import { moveFromPath } from './utils/index.js'
+import { getPackageRoot } from './urls.js'
 import { copyFileToFolderOrSkip } from './files.js'
 
 export const getTemplatesFolder = (templatesRelativePath) => {

@@ -38,6 +38,6 @@ export const configureHusky = () => {
 }
 export const copyConfigurationFiles = () => {
   console.log('Copying configuration files...')
-  const templatesDirectory = getTemplatesFolder('../templates')
+  const templatesDirectory = getTemplatesFolder('templates')
   copyFilesToTargetOrSkip(devDepFiles, templatesDirectory)
 }
