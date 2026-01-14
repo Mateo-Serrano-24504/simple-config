@@ -1,6 +1,6 @@
 import { Dependency } from './dependency'
 
-const devDeps: Dependency[] = [
+export const devDeps: Dependency[] = [
   {
     name: 'tsx',
     version: '4.20.6',
@@ -38,29 +38,29 @@ const devDeps: Dependency[] = [
     version: '17.0.0',
   }
 ];
-export const devDepFiles = {
-  eslint: [
+export const devDepFiles = [
+  [
     {
       source: 'eslint.config.js',
       target: '.',
     },
   ],
-  prettier: [
+  [
     {
       source: 'prettier.config.js',
       target: '.',
     },
   ],
-  lintStaged: [
+  [
     {
       source: 'lint-staged.config.js',
       target: '.',
     },
   ],
-  typescript: [
+  [
     {
       source: 'tsconfig.json',
       target: '.',
     },
   ],
-}
+]
