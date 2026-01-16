@@ -27,12 +27,29 @@ describe('FileCopier', () => {
     };
     fileCopier = new FileCopier(fileHandler as never, logger as never);
   });
-  it('copyToFolder should copy files to folder', () => {
-    const file = faker.system.filePath();
-    const folder = faker.system.directoryPath();
-    const outputFileName = join(folder, basename(file));
-    fileHandler.verifyIfFileExists.mockReturnValue(true);
-    fileCopier.copyFileToFolder(file, folder);
-    expect(fileHandler.copyFile).toHaveBeenCalledWith(file, outputFileName);
+  describe('copyFileToFolder', () => {
+    it('copyFileToFolder should copy files to folder', () => {
+      const file = faker.system.filePath();
+      const folder = faker.system.directoryPath();
+      const outputFileName = join(folder, basename(file));
+      fileHandler.verifyIfFileExists.mockReturnValue(true);
+      fileCopier.copyFileToFolder(file, folder);
+      expect(fileHandler.copyFile).toHaveBeenCalledWith(file, outputFileName);
+    });
+    it('copyFileToFolder should call logger.error if file does not exist', () => {
+      fileHandler.verifyIfFileExists.mockReturnValue(false);
+      fileCopier.copyFileToFolder('dummy', 'dummy');
+      expect(logger.error).toHaveBeenCalled();
+    });
+    it('copyFileToFolder should create folder if it does not exist', () => {
+      const folder = faker.system.directoryPath();
+      fileHandler.verifyIfFileExists
+        .mockReturnValueOnce(true)
+        .mockReturnValueOnce(false);
+
+      fileCopier.copyFileToFolder('dummy', folder);
+      expect(logger.log).toHaveBeenCalled();
+      expect(fileHandler.createFolder).toHaveBeenCalledWith(folder);
+    });
   });
 });
