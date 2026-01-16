@@ -52,4 +52,23 @@ describe('FileCopier', () => {
       expect(fileHandler.createFolder).toHaveBeenCalledWith(folder);
     });
   });
+  describe('copyFileToFolderOrSkip', () => {
+    let spy: ReturnType<typeof vi.spyOn>;
+    beforeEach(() => {
+      spy = vi.spyOn(fileCopier, 'copyFileToFolder');
+    });
+    it('should log if file exist', () => {
+      fileHandler.verifyIfFileExists.mockReturnValue(true);
+      fileCopier.copyFileToFolderOrSkip('dummy', 'dummy');
+      expect(logger.log).toHaveBeenCalled();
+      expect(spy).not.toHaveBeenCalled();
+    });
+    it('should call copyFileToFolder if file does not exist', () => {
+      const file = faker.system.filePath();
+      const folder = faker.system.directoryPath();
+      fileHandler.verifyIfFileExists.mockReturnValue(false);
+      fileCopier.copyFileToFolderOrSkip(file, folder);
+      expect(spy).toHaveBeenCalledWith(file, folder);
+    });
+  });
 });
