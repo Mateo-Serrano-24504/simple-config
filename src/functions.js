@@ -2,17 +2,15 @@ import {
   addHuskyPrepareCommand,
   prepareHuskyCommand,
   setUpHuskyCommand,
-} from './core/commands/constants.ts';
-import {
   devDeps,
-  devDepFiles
-} from './core/dependencies/constants.ts';
+  devDepFiles,
+  CommandInstallFactory
+} from './core';
 import {
   copyFilesToTargetOrSkip,
   getTemplatesFolder,
   verifyNodePackage,
 } from './core/index.js'
-import { CommandInstallFactory } from './core/commands/index.ts'
 
 export const assertValidNodePackage = () => {
   if (!verifyNodePackage()) {
