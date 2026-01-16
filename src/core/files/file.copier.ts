@@ -1,9 +1,9 @@
 import { Logger } from '../utils';
 import { FileHandler } from './file.handler'
-import { PathBuilder } from './path.builder'
+import { PathManager } from './path.manager'
 
 export class FileCopier {
-  private pathBuilder = new PathBuilder();
+  private pathManager = new PathManager();
   constructor(
     private fileHandler: FileHandler,
     private logger: Logger
@@ -20,14 +20,14 @@ export class FileCopier {
       return;
     }
     this.createFolderIfNotExist(folder);
-    const outputFileName = this.pathBuilder.changeDirectory(
-      folder, this.pathBuilder.getFileBasename(fileName)
+    const outputFileName = this.pathManager.changeDirectory(
+      folder, this.pathManager.getFileBasename(fileName)
     );
     this.fileHandler.copyFile(fileName, outputFileName);
   }
   copyFileToFolderOrSkip(fileName: string, folder: string) {
-    const fileBasename = this.pathBuilder.getFileBasename(fileName);
-    const outputFileName = this.pathBuilder.changeDirectory(folder, fileBasename);
+    const fileBasename = this.pathManager.getFileBasename(fileName);
+    const outputFileName = this.pathManager.changeDirectory(folder, fileBasename);
     if (this.fileHandler.verifyIfFileExists(outputFileName)) {
       this.logger.log(`File ${fileBasename} already exists in ${folder}. Skipping...`);
       return;

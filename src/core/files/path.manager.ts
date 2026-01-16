@@ -1,6 +1,6 @@
 import { basename, join } from 'node:path'
 
-export class PathBuilder {
+export class PathManager {
   changeDirectory(folder: string, relativePath: string): string {
     return join(folder, relativePath);
   }
