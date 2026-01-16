@@ -23,14 +23,13 @@
     "url": "https://github.com/Mateo-Serrano-24504/simple-config/issues"
   },
   "files": [
-    "scripts/",
+    "dist/",
     "templates/",
-    "src/**",
     "README.md",
     "LICENSE"
   ],
   "bin": {
-    "dev-config": "./scripts/init.js"
+    "dev-config": "dist/scripts/init.ts"
   },
   "engines": {
     "node": ">=20"
@@ -51,6 +50,7 @@
   },
   "scripts": {
     "prepare": "husky",
-    "test": "vitest"
+    "test": "vitest",
+    "build": "tsc"
   }
 }
