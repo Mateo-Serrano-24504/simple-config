@@ -28,7 +28,7 @@ describe('FileCopier', () => {
     fileCopier = new FileCopier(fileHandler as never, logger as never);
   });
   describe('copyFileToFolder', () => {
-    it('copyFileToFolder should copy files to folder', () => {
+    it('should copy files to folder', () => {
       const file = faker.system.filePath();
       const folder = faker.system.directoryPath();
       const outputFileName = join(folder, basename(file));
@@ -36,12 +36,12 @@ describe('FileCopier', () => {
       fileCopier.copyFileToFolder(file, folder);
       expect(fileHandler.copyFile).toHaveBeenCalledWith(file, outputFileName);
     });
-    it('copyFileToFolder should call logger.error if file does not exist', () => {
+    it('should call logger.error if file does not exist', () => {
       fileHandler.verifyIfFileExists.mockReturnValue(false);
       fileCopier.copyFileToFolder('dummy', 'dummy');
       expect(logger.error).toHaveBeenCalled();
     });
-    it('copyFileToFolder should create folder if it does not exist', () => {
+    it('should create folder if it does not exist', () => {
       const folder = faker.system.directoryPath();
       fileHandler.verifyIfFileExists
         .mockReturnValueOnce(true)
