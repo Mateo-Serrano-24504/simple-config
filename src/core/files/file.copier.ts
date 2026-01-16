@@ -1,29 +1,29 @@
 import { basename, join } from 'node:path';
-import { cpSync, existsSync, mkdirSync } from 'node:fs'
 import { Logger } from '../utils';
+import { FileHandler } from './file.handler'
 
 export class FileCopier {
   private logger = new Logger();
+  constructor(private fileHandler: FileHandler) {}
   private createFolderIfNotExist(folder: string) {
-    if (!existsSync(folder)) {
+    if (!this.fileHandler.verifyIfFileExists(folder)) {
       this.logger.log(`Creating folder ${folder}...`);
-      mkdirSync(folder);
+      this.fileHandler.createFolder(folder);
     }
   }
   copyFileToFolder(fileName: string, folder: string) {
-    if (!existsSync(fileName)) {
+    if (!this.fileHandler.verifyIfFileExists(fileName)) {
       this.logger.error(`File does not exist: ${fileName}`);
       return;
     }
     this.createFolderIfNotExist(folder);
-
     const outputFileName = join(folder, basename(fileName));
-    cpSync(fileName, outputFileName);
+    this.fileHandler.copyFile(fileName, outputFileName);
   }
   copyFileToFolderOrSkip(fileName: string, folder: string) {
     const fileBasename = basename(fileName);
     const outputFileName = join(folder, fileBasename);
-    if (existsSync(outputFileName)) {
+    if (this.fileHandler.verifyIfFileExists(outputFileName)) {
       this.logger.log(`File ${fileBasename} already exists in ${folder}. Skipping...`);
       return;
     }
