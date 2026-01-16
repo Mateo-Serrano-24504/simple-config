@@ -3,8 +3,10 @@ import { Logger } from '../utils';
 import { FileHandler } from './file.handler'
 
 export class FileCopier {
-  private logger = new Logger();
-  constructor(private fileHandler: FileHandler) {}
+  constructor(
+    private fileHandler: FileHandler,
+    private logger: Logger
+  ) {}
   private createFolderIfNotExist(folder: string) {
     if (!this.fileHandler.verifyIfFileExists(folder)) {
       this.logger.log(`Creating folder ${folder}...`);
