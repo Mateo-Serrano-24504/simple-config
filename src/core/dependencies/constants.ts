@@ -39,28 +39,20 @@ export const devDeps: Dependency[] = [
   }
 ];
 export const devDepFiles = [
-  [
-    {
-      source: 'eslint.config.js',
-      target: '.',
-    },
-  ],
-  [
-    {
-      source: 'prettier.config.js',
-      target: '.',
-    },
-  ],
-  [
-    {
-      source: 'lint-staged.config.js',
-      target: '.',
-    },
-  ],
-  [
-    {
-      source: 'tsconfig.json',
-      target: '.',
-    },
-  ],
+  {
+    source: 'eslint.config.js',
+    target: '.',
+  },
+  {
+    source: 'prettier.config.js',
+    target: '.',
+  },
+  {
+    source: 'lint-staged.config.js',
+    target: '.',
+  },
+  {
+    source: 'tsconfig.json',
+    target: '.',
+  },
 ]
