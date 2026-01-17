@@ -1,4 +1,4 @@
-import { Dependency } from './dependency'
+import { Dependency } from '../core'
 
 export const devDeps: Dependency[] = [
   {
@@ -56,3 +56,7 @@ export const devDepFiles = [
     target: '.',
   },
 ]
+
+export const initHusky = 'npx husky init'
+export const prepareHusky = 'npm run prepare'
+export const setUpHusky = 'echo "npx lint-staged" > .husky/pre-commit'

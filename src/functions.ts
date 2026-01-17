@@ -4,15 +4,13 @@ import {
   setUpHuskyCommand,
   devDeps,
   devDepFiles,
-} from './core'
-import {
   logger,
   fileCopier,
   commandInstallFactory,
   packageManager,
   cwd,
   pathManager,
-} from './instances'
+} from './wires'
 
 export const assertValidNodePackage = () => {
   if (!packageManager.verifyValidPackage(cwd)) {
