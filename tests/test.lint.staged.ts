@@ -1,1 +1,1 @@
-const a = 1
+const a = { a: 1, b: 2 }
