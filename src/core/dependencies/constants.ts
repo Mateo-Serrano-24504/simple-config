@@ -36,8 +36,8 @@ export const devDeps: Dependency[] = [
   {
     name: 'globals',
     version: '17.0.0',
-  }
-];
+  },
+]
 export const devDepFiles = [
   {
     source: 'eslint.config.js',

@@ -1,10 +1,10 @@
 import {
-  addHuskyPrepareCommand,
+  initHuskyCommand,
   prepareHuskyCommand,
   setUpHuskyCommand,
   devDeps,
   devDepFiles,
-} from './core';
+} from './core'
 import {
   logger,
   fileCopier,
@@ -22,22 +22,22 @@ export const assertValidNodePackage = () => {
 }
 export const installDependencies = () => {
   logger.log('Installing dependencies...')
-  addHuskyPrepareCommand.run();
-  prepareHuskyCommand.run();
-  commandInstallFactory.create(devDeps).run();
+  commandInstallFactory.create(devDeps).run()
 }
 export const configureHusky = () => {
-  logger.log('Configuring Husky...');
-  setUpHuskyCommand.run();
+  logger.log('Configuring Husky...')
+  initHuskyCommand.run()
+  prepareHuskyCommand.run()
+  setUpHuskyCommand.run()
 }
 export const copyConfigurationFiles = () => {
-  logger.log('Copying configuration files...');
-  const templatesDirectory = packageManager.getTemplatesFolderPath();
-  devDepFiles.forEach(file => {
+  logger.log('Copying configuration files...')
+  const templatesDirectory = packageManager.getTemplatesFolderPath()
+  devDepFiles.forEach((file) => {
     logger.log(`Copying file ${file}...`)
     fileCopier.copyFileToFolderOrSkip(
       file.source,
-      pathManager.changeDirectory(templatesDirectory, file.target)
-    );
-  });
+      pathManager.changeDirectory(templatesDirectory, file.target),
+    )
+  })
 }

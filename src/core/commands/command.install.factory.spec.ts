@@ -6,23 +6,21 @@ import { Dependency } from '../dependencies'
 function makeDependency(overrides: Partial<Dependency> = {}): Dependency {
   return {
     name: faker.word.noun(),
-    version: faker.datatype.boolean()
-      ? faker.system.semver()
-      : undefined,
+    version: faker.datatype.boolean() ? faker.system.semver() : undefined,
     ...overrides,
-  };
+  }
 }
 
 describe('CommandInstallFactory', () => {
-  let factory: CommandInstallFactory;
+  let factory: CommandInstallFactory
   beforeEach(() => {
-    factory = new CommandInstallFactory();
-  });
+    factory = new CommandInstallFactory()
+  })
   it('should create a valid npm install command', () => {
-    const deps = Array.from({ length: 5 }, () => makeDependency());
-    const result = factory.create(deps);
+    const deps = Array.from({ length: 5 }, () => makeDependency())
+    const result = factory.create(deps)
     expect(result.getCommand()).toEqual(
-      `npm i -D ${deps.map(dep => dep.version ? `${dep.name}@${dep.version}` : dep.name).join(' ')}`
-    );
-  });
+      `npm i -D ${deps.map((dep) => (dep.version ? `${dep.name}@${dep.version}` : dep.name)).join(' ')}`,
+    )
+  })
 })

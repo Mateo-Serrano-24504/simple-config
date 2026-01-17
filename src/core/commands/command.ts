@@ -1,12 +1,12 @@
 export class Command {
   constructor(
     private command: string,
-    private runMechanism: (command: string) => void
+    private runMechanism: (command: string) => void,
   ) {}
   run() {
-    this.runMechanism(this.command);
+    this.runMechanism(this.command)
   }
   getCommand() {
-    return this.command;
+    return this.command
   }
 }

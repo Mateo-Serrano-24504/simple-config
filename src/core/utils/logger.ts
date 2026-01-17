@@ -1,11 +1,11 @@
 export class Logger {
   log(message: string) {
-    console.log(message);
+    console.log(message)
   }
   error(message: string) {
-    console.error(message);
+    console.error(message)
   }
   warn(message: string) {
-    console.warn(message);
+    console.warn(message)
   }
 }
