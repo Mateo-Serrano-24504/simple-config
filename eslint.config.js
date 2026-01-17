@@ -3,9 +3,12 @@ import tseslint from 'typescript-eslint'
 
 export default [
   {
-    files: ['**/*.js', '**/*.ts'],
+    files: ['**/*.ts'],
     languageOptions: {
       parser: tseslint.parser,
+      parserOptions: {
+        project: './tsconfig.eslint.json',
+      },
       ecmaVersion: 'latest',
       sourceType: 'module',
       globals: {
