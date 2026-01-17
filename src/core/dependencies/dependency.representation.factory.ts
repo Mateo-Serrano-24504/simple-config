@@ -1,4 +1,4 @@
-import { Dependency } from './dependency'
+import { Dependency } from './dependency.js'
 
 export class DependencyRepresentationFactory {
   create(dependency: Dependency) {

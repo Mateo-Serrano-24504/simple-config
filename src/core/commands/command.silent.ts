@@ -1,4 +1,4 @@
-import { Command } from './command'
+import { Command } from './command.js'
 import { execSync } from 'node:child_process'
 
 export class CommandSilent {

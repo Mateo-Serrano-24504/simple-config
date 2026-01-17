@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { CommandSilentFactory } from './command.silent.factory'
+import { CommandSilentFactory } from './command.silent.factory.js'
 
 describe('CommandSilentFactory', () => {
   it('should create a valid silent command', () => {

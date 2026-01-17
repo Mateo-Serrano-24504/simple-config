@@ -1,2 +1,2 @@
-export * from './dependency'
-export * from './dependency.representation.factory'
+export * from './dependency.js'
+export * from './dependency.representation.factory.js'

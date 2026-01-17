@@ -10,7 +10,7 @@ import {
   packageManager,
   cwd,
   pathManager,
-} from './wires'
+} from './wires/index.js'
 
 export const assertValidNodePackage = () => {
   if (!packageManager.verifyValidPackage(cwd)) {

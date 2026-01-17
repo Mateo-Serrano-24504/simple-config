@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import { Command } from './command'
+import { Command } from './command.js'
 
 describe('Command', () => {
   it('should log the command', () => {

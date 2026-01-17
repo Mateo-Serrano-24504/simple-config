@@ -1,5 +1,5 @@
 import { describe, it, beforeEach, vi, expect } from 'vitest'
-import { FileCopier } from './file.copier'
+import { FileCopier } from './file.copier.js'
 import { faker } from '@faker-js/faker'
 import { basename, join } from 'node:path'
 

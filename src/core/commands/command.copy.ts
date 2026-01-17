@@ -1,7 +1,7 @@
 import { basename, join } from 'node:path'
 import { cpSync, existsSync, mkdirSync } from 'node:fs'
-import { Command } from './command'
-import { Logger } from '../utils'
+import { Command } from './command.js'
+import { Logger } from '../utils/index.js'
 
 export class CommandCopy {
   private logger = new Logger()

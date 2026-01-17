@@ -1,3 +1,3 @@
-export * from './command.silent'
-export * from './command.silent.factory'
-export * from './command.install.factory'
+export * from './command.silent.js'
+export * from './command.silent.factory.js'
+export * from './command.install.factory.js'

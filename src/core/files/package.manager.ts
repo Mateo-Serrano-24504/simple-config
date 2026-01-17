@@ -1,5 +1,5 @@
-import { FileHandler } from './file.handler'
-import { PathManager } from './path.manager'
+import { FileHandler } from './file.handler.js'
+import { PathManager } from './path.manager.js'
 
 export class PackageManager {
   constructor(

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { CommandCopyFactory } from './command.copy.factory'
+import { CommandCopyFactory } from './command.copy.factory.js'
 
 describe('CommandCopyFactory', () => {
   it('should create a valid copy command', () => {

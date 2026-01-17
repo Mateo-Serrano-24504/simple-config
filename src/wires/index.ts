@@ -1,2 +1,2 @@
-export * from './constants'
-export * from './instances'
+export * from './constants.js'
+export * from './instances.js'

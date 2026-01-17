@@ -1,5 +1,5 @@
-import { Dependency, DependencyRepresentationFactory } from '../dependencies'
-import { CommandSilentFactory } from './command.silent.factory'
+import { Dependency, DependencyRepresentationFactory } from '../dependencies/index.js'
+import { CommandSilentFactory } from './command.silent.factory.js'
 
 export class CommandInstallFactory {
   private dependencyRepresentationFactory = new DependencyRepresentationFactory()

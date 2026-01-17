@@ -6,8 +6,8 @@ import {
   CommandInstallFactory,
   CommandSilentFactory,
   PackageManager,
-} from '../core'
-import { initHusky, prepareHusky, setUpHusky } from './constants'
+} from '../core/index.js'
+import { initHusky, prepareHusky, setUpHusky } from './constants.js'
 
 const commandSilentFactory = new CommandSilentFactory()
 export const logger = new Logger()
