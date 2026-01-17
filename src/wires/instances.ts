@@ -7,6 +7,7 @@ import {
   CommandSilentFactory,
   PackageManager,
 } from '../core/index.js'
+
 import { initHusky, prepareHusky, setUpHusky } from './constants.js'
 
 const commandSilentFactory = new CommandSilentFactory()

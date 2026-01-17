@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { CommandCopyFactory } from './command.copy.factory.js'
 
 describe('CommandCopyFactory', () => {

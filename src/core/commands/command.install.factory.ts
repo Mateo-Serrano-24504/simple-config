@@ -1,4 +1,5 @@
 import { Dependency, DependencyRepresentationFactory } from '../dependencies/index.js'
+
 import { CommandSilentFactory } from './command.silent.factory.js'
 
 export class CommandInstallFactory {

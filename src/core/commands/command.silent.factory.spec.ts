@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+
 import { CommandSilentFactory } from './command.silent.factory.js'
 
 describe('CommandSilentFactory', () => {

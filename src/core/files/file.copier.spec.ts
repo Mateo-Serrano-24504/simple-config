@@ -1,7 +1,9 @@
-import { describe, it, beforeEach, vi, expect } from 'vitest'
-import { FileCopier } from './file.copier.js'
-import { faker } from '@faker-js/faker'
 import { basename, join } from 'node:path'
+
+import { describe, it, beforeEach, vi, expect } from 'vitest'
+import { faker } from '@faker-js/faker'
+
+import { FileCopier } from './file.copier.js'
 
 describe('FileCopier', () => {
   faker.seed(404)
