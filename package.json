@@ -29,7 +29,7 @@
     "LICENSE"
   ],
   "bin": {
-    "dev-config": "dist/scripts/init.ts"
+    "dev-config": "dist/scripts/init.js"
   },
   "engines": {
     "node": ">=20"
