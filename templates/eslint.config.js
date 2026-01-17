@@ -1,14 +1,19 @@
 import globals from 'globals'
+import tseslint from 'typescript-eslint'
 
 export default [
   {
     files: ['**/*.js', '**/*.ts'],
     languageOptions: {
+      parser: tseslint.parser,
       ecmaVersion: 'latest',
       sourceType: 'commonjs',
       globals: {
         ...globals.node,
       },
+    },
+    plugins: {
+      '@typescript-eslint': tseslint.plugin,
     },
     rules: {
       '@typescript-eslint/no-unused-vars': 'warn',
