@@ -1,14 +1,14 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { faker } from '@faker-js/faker'
 
-import { Dependency } from '../dependencies/index.js'
+import type { Dependency } from '../dependencies/index.js'
 
 import { CommandInstallFactory } from './command.install.factory.js'
 
 function makeDependency(overrides: Partial<Dependency> = {}): Dependency {
   return {
     name: faker.word.noun(),
-    version: faker.datatype.boolean() ? faker.system.semver() : undefined,
+    ...(faker.datatype.boolean() ? { version: faker.system.semver() } : {}),
     ...overrides,
   }
 }

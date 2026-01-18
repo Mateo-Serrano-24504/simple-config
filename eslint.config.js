@@ -1,17 +1,17 @@
-import { defineConfig } from 'eslint/config'
+import js from '@eslint/js'
 import globals from 'globals'
 import tseslint from 'typescript-eslint'
 
-export default defineConfig([
+export default tseslint.config([
+  js.configs.recommended,
   {
-    files: ['**/*.ts'],
+    files: ['**/*.ts', '**/*.js'],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
-        project: './tsconfig.eslint.json',
+        ecmaVersion: 'latest',
+        sourceType: 'module',
       },
-      ecmaVersion: 'latest',
-      sourceType: 'module',
       globals: {
         ...globals.node,
       },
@@ -20,9 +20,9 @@ export default defineConfig([
       '@typescript-eslint': tseslint.plugin,
     },
     rules: {
-      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-explicit-any': 'warn',
-      'no-console': 'off',
+      '@typescript-eslint/consistent-type-imports': 'warn',
     },
   },
 ])
