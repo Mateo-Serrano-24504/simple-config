@@ -2,8 +2,8 @@ import type { Dependency } from '../core/index.js'
 
 export const devDeps: Dependency[] = [
   {
-    name: 'tsx',
-    version: '4.20.6',
+    name: 'typescript',
+    version: '5.9.3',
   },
   {
     name: 'eslint',
