@@ -2,8 +2,9 @@ import js from '@eslint/js'
 import globals from 'globals'
 import tseslint from 'typescript-eslint'
 
-export default tseslint.config(
+export default tseslint.config([
   js.configs.recommended,
+  ...tseslint.configs.recommended,
   {
     files: ['**/*.ts'],
     languageOptions: {
@@ -16,6 +17,9 @@ export default tseslint.config(
         ...globals.node,
       },
     },
+    plugins: {
+      '@typescript-eslint': tseslint.plugin,
+    },
     rules: {
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-explicit-any': 'warn',
@@ -26,9 +30,7 @@ export default tseslint.config(
     files: ['**/*.js'],
     languageOptions: {
       sourceType: 'module',
-      globals: {
-        ...globals.node,
-      },
+      globals: globals.node,
     },
   },
-)
+])
