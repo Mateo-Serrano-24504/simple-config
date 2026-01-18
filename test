@@ -1,0 +1,155 @@
+#!/usr/bin/env bash
+set -e
+
+PACKAGE=pkg.test.tgz
+TEST_DIR=temp
+OUTPUT_DIR=out
+NO_LOG=/dev/null
+LOG_FILE="$OUTPUT_DIR/log.txt"
+ERROR_FILE="$OUTPUT_DIR/error.txt"
+HOOK_LOG="../$OUTPUT_DIR/hook.txt"
+CLEANUP=false
+
+cleanup_if_failed_previously() {
+  if [[ -d "$TEST_DIR" ]]; then
+    echo "Cleaning up test directory..."
+    rm -rf "$TEST_DIR"
+    rm -f "$PACKAGE"
+  fi
+}
+cleanup() {
+  if [[ "$CLEANUP" == true ]]; then
+    echo "Cleaning up..."
+    rm -rf "$TEST_DIR"
+    rm -f "$PACKAGE"
+  else
+    echo "Test failed — keeping $TEST_DIR for inspection"
+  fi
+}
+no_log() {
+  "$@" > "$NO_LOG" 2> "../$ERROR_FILE"
+}
+log() {
+  "$@" > "../$LOG_FILE" 2> "../$ERROR_FILE"
+}
+fail() {
+  echo "$1"
+  exit 1
+}
+assert_file() {
+  [[ -f "$1" ]] || fail "Missing file: $1"
+  echo "✔ $1"
+}
+assert_dir() {
+  [[ -d "$1" ]] || fail "Missing directory: $1"
+  echo "✔ $1"
+}
+assert_dep() {
+  local dep="$1"
+  local version="$2"
+
+  jq -e "
+    .devDependencies[\"$dep\"] == \"$version\"
+  " package.json > /dev/null \
+    || fail "Dev dependency $dep@$version not found"
+
+  echo "✔ $dep v$version"
+}
+assert_file_contains() {
+  local file="$1"
+  local content="$2"
+  grep -q "$content" "$file" \
+    || fail "File $file does not contain '$content'"
+}
+
+trap cleanup EXIT
+
+echo "Stage 1: preparing test"
+echo ""
+
+cleanup_if_failed_previously
+
+echo "Creating output logs folder..."
+mkdir -p "$OUTPUT_DIR"
+
+echo "Transpiling TypeScript to JavaScript..."
+npm run build > "$NO_LOG" 2> "$ERROR_FILE"
+echo "JavaScript code generated"
+
+echo "Packing..."
+npm pack > "$NO_LOG" 2> "$ERROR_FILE"
+PACK_FILE=$(ls *.tgz | head -n 1)
+mv "$PACK_FILE" "$PACKAGE"
+echo "Pack created"
+
+echo "Creating isolated test module..."
+mkdir -p "$TEST_DIR"
+cp "$PACKAGE" "$TEST_DIR"
+echo "Test module created"
+
+echo ""
+echo "Stage 2: running test"
+echo ""
+
+(
+  echo "Installing the package..."
+  cd "$TEST_DIR"
+  no_log npm init -y
+  no_log npm pkg set type=module
+  no_log npm i -D "$PACKAGE" --save-exact
+  echo "Package installed"
+
+  echo "Initiating git repository..."
+  no_log git init
+  echo "package-lock.json" > .gitignore
+  echo "node_modules/" >> .gitignore
+  no_log git add .
+  no_log git commit -m "chore: initial commit"
+  echo "Git repository initiated"
+
+  echo "Running configuration script..."
+  log npx dev-config
+  echo ""
+  echo "Configuration finished"
+  echo ""
+
+  echo "Stage 3: verifying correct installation"
+  echo ""
+  assert_dir .husky
+  assert_file .husky/pre-commit
+  assert_file_contains ".husky/pre-commit" "npx lint-staged"
+  assert_file eslint.config.js
+  assert_file lint-staged.config.js
+  assert_file prettier.config.js
+  assert_file tsconfig.json
+  assert_dep tsx 4.20.6
+  assert_dep eslint 9.39.1
+  assert_dep typescript-eslint 8.46.4
+  assert_dep @eslint/js 9.39.1
+  assert_dep prettier 3.6.2
+  assert_dep eslint-config-prettier 10.1.8
+  assert_dep lint-staged 16.2.7
+  assert_dep husky 9.1.7
+  assert_dep globals 17.0.0
+
+  echo ""
+  echo "Verification succeeded"
+
+  echo ""
+  echo "Stage 4: testing husky hook"
+
+  no_log git add .
+  echo "echo \"husky-pre-commit-ran\" > $HOOK_LOG" > ./.husky/pre-commit
+
+  if git commit -m "test husky" > /dev/null ; then
+    echo "✔ git commit succeeded"
+    assert_file "$HOOK_LOG"
+    assert_file_contains "$HOOK_LOG" "husky-pre-commit-ran"
+    echo "✔ husky pre-commit hook ran successfully"
+  else
+    echo "✖ git commit failed"
+    exit 1
+  fi
+)
+
+CLEANUP=true

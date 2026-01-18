@@ -39,22 +39,10 @@ export const devDeps: Dependency[] = [
   },
 ]
 export const devDepFiles = [
-  {
-    source: 'eslint.config.js',
-    target: '.',
-  },
-  {
-    source: 'prettier.config.js',
-    target: '.',
-  },
-  {
-    source: 'lint-staged.config.js',
-    target: '.',
-  },
-  {
-    source: 'tsconfig.json',
-    target: '.',
-  },
+  'eslint.config.js',
+  'prettier.config.js',
+  'lint-staged.config.js',
+  'tsconfig.json',
 ]
 
 export const initHusky = 'npx husky init'

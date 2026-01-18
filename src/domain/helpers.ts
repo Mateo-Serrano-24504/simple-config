@@ -33,9 +33,6 @@ export const copyConfigurationFiles = () => {
   const templatesDirectory = packageManager.getTemplatesFolderPath()
   devDepFiles.forEach((file) => {
     logger.log(`Copying file ${file}...`)
-    fileCopier.copyFileToFolderOrSkip(
-      file.source,
-      pathManager.changeDirectory(templatesDirectory, file.target),
-    )
+    fileCopier.copyFileToFolderOrSkip(pathManager.changeDirectory(templatesDirectory, file), cwd)
   })
 }

@@ -7,7 +7,7 @@ export class CommandInstallFactory {
   private commandSilentFactory: CommandSilentFactory = new CommandSilentFactory()
   create(dependencies: Dependency[]) {
     return this.commandSilentFactory.create(
-      `npm i -D ${dependencies.map(this.dependencyRepresentationFactory.create).join(' ')}`,
+      `npm i -D ${dependencies.map(this.dependencyRepresentationFactory.create).join(' ')} --save-exact`,
     )
   }
 }
