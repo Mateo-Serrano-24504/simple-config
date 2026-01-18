@@ -1,7 +1,7 @@
 import { dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { FileHandler } from './file.handler.js'
-import { PathManager } from './path.manager.js'
+import type { FileHandler } from './file.handler.js'
+import type { PathManager } from './path.manager.js'
 
 export class PackageManager {
   constructor(

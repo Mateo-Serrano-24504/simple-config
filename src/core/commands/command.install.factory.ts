@@ -1,4 +1,5 @@
-import { Dependency, DependencyRepresentationFactory } from '../dependencies/index.js'
+import type { Dependency } from '../dependencies/index.js'
+import { DependencyRepresentationFactory } from '../dependencies/index.js'
 
 import { CommandSilentFactory } from './command.silent.factory.js'
 

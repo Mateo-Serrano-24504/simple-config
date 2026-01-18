@@ -1,4 +1,4 @@
-import { Dependency } from '../core/index.js'
+import type { Dependency } from '../core/index.js'
 
 export const devDeps: Dependency[] = [
   {

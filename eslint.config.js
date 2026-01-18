@@ -6,12 +6,16 @@ export default tseslint.config([
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
+    ignores: ['dist/**'],
+  },
+  {
     files: ['**/*.ts'],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
+        project: './tsconfig.eslint.json',
       },
       globals: {
         ...globals.node,

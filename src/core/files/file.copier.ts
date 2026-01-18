@@ -1,6 +1,6 @@
-import { Logger } from '../utils/index.js'
+import type { Logger } from '../utils/index.js'
 
-import { FileHandler } from './file.handler.js'
+import type { FileHandler } from './file.handler.js'
 import { PathManager } from './path.manager.js'
 
 export class FileCopier {

@@ -6,6 +6,9 @@ export default tseslint.config([
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
+    ignores: ['dist/**'],
+  },
+  {
     files: ['**/*.ts'],
     languageOptions: {
       parser: tseslint.parser,
