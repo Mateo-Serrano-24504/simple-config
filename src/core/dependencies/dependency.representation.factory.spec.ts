@@ -1,18 +1,18 @@
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest';
 
-import { DependencyRepresentationFactory } from './dependency.representation.factory.js'
+import { DependencyRepresentationFactory } from './dependency.representation.factory.js';
 
 describe('DependencyRepresentationFactory', () => {
-  let factory: DependencyRepresentationFactory
+  let factory: DependencyRepresentationFactory;
   beforeEach(() => {
-    factory = new DependencyRepresentationFactory()
-  })
+    factory = new DependencyRepresentationFactory();
+  });
   it('should create <name>@<version>', () => {
-    const result = factory.create({ name: 'random', version: 'random' })
-    expect(result).toEqual('random@random')
-  })
+    const result = factory.create({ name: 'random', version: 'random' });
+    expect(result).toEqual('random@random');
+  });
   it('should create <name>', () => {
-    const result = factory.create({ name: 'random' })
-    expect(result).toEqual('random')
-  })
-})
+    const result = factory.create({ name: 'random' });
+    expect(result).toEqual('random');
+  });
+});

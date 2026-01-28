@@ -4,9 +4,9 @@ export class Command {
     private runMechanism: (command: string) => void,
   ) {}
   run() {
-    this.runMechanism(this.command)
+    this.runMechanism(this.command);
   }
   getCommand() {
-    return this.command
+    return this.command;
   }
 }

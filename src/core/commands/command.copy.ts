@@ -1,47 +1,47 @@
-import { basename, join } from 'node:path'
-import { cpSync, existsSync, mkdirSync } from 'node:fs'
+import { basename, join } from 'node:path';
+import { cpSync, existsSync, mkdirSync } from 'node:fs';
 
-import { Logger } from '../utils/index.js'
+import { Logger } from '../utils/index.js';
 
-import { Command } from './command.js'
+import { Command } from './command.js';
 
 export class CommandCopy {
-  private logger = new Logger()
-  private command: Command
+  private logger = new Logger();
+  private command: Command;
   constructor(
     source: string,
     private destination: string,
   ) {
     this.command = new Command(source, (src) => {
-      this.copyFileToFolderOrSkip(src, this.destination)
-    })
+      this.copyFileToFolderOrSkip(src, this.destination);
+    });
   }
   run() {
-    this.command.run()
+    this.command.run();
   }
   getSource() {
-    return this.command.getCommand()
+    return this.command.getCommand();
   }
   getDestination() {
-    return this.destination
+    return this.destination;
   }
   private copyFileToFolderOrSkip(sourceFile: string, targetDirectory: string) {
-    const sourceFileName = basename(sourceFile)
-    const outputFileName = join(targetDirectory, sourceFileName)
+    const sourceFileName = basename(sourceFile);
+    const outputFileName = join(targetDirectory, sourceFileName);
 
     if (!existsSync(sourceFile)) {
-      this.logger.error(`File does not exist: ${sourceFile}`)
-      return
+      this.logger.error(`File does not exist: ${sourceFile}`);
+      return;
     }
     if (!existsSync(targetDirectory)) {
-      this.logger.log(`Creating folder ${targetDirectory}...`)
-      mkdirSync(targetDirectory, { recursive: true })
+      this.logger.log(`Creating folder ${targetDirectory}...`);
+      mkdirSync(targetDirectory, { recursive: true });
     }
     if (existsSync(outputFileName)) {
-      this.logger.log(`File ${sourceFileName} already exists in ${targetDirectory}. Skipping...`)
-      return
+      this.logger.log(`File ${sourceFileName} already exists in ${targetDirectory}. Skipping...`);
+      return;
     }
-    const destinationPath = join(targetDirectory, sourceFileName)
-    cpSync(sourceFile, destinationPath)
+    const destinationPath = join(targetDirectory, sourceFileName);
+    cpSync(sourceFile, destinationPath);
   }
 }

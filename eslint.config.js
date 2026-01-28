@@ -1,40 +1,51 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import tseslint from 'typescript-eslint'
+// @ts-check
+import eslint from '@eslint/js';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
-export default tseslint.config([
-  js.configs.recommended,
-  ...tseslint.configs.recommended,
+export default tseslint.config(
   {
-    ignores: ['dist/**'],
+    ignores: [
+      'dist/**',
+      'node_modules/**',
+      '**/eslint.config.js',
+      '**/prettier.config.js',
+      '**/lint-staged.config.js',
+    ],
   },
+  eslint.configs.recommended,
+  ...tseslint.configs.recommendedTypeChecked,
+  eslintPluginPrettierRecommended,
   {
-    files: ['**/*.ts'],
     languageOptions: {
-      parser: tseslint.parser,
-      parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-        project: './tsconfig.eslint.json',
-      },
       globals: {
         ...globals.node,
+        ...globals.vitest,
       },
-    },
-    plugins: {
-      '@typescript-eslint': tseslint.plugin,
-    },
-    rules: {
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-      '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/consistent-type-imports': 'warn',
+      sourceType: 'module',
+      parserOptions: {
+        ecmaVersion: 'latest',
+        project: './tsconfig.json',
+        tsconfigRootDir: import.meta.dirname,
+      },
     },
   },
   {
-    files: ['**/*.js'],
+    files: ['**/*.js', '**/*.cjs', '**/*.mjs'],
     languageOptions: {
-      sourceType: 'module',
-      globals: globals.node,
+      sourceType: 'script',
+    },
+    rules: {
+      ...tseslint.configs.disableTypeChecked.rules,
     },
   },
-])
+  {
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-floating-promises': 'warn',
+      '@typescript-eslint/no-unsafe-argument': 'warn',
+      'prettier/prettier': ['error', { endOfLine: 'auto' }],
+    },
+  },
+);

@@ -1,4 +1,4 @@
-import type { Dependency } from '../core/index.js'
+import type { Dependency } from '../core/index.js';
 
 export const devDeps: Dependency[] = [
   {
@@ -37,14 +37,14 @@ export const devDeps: Dependency[] = [
     name: 'globals',
     version: '17.0.0',
   },
-]
+];
 export const devDepFiles = [
   'eslint.config.js',
   'prettier.config.js',
   'lint-staged.config.js',
-  'tsconfig.json',
-]
+  'tsconfig.build.json',
+];
 
-export const initHusky = 'npx husky init'
-export const prepareHusky = 'npm run prepare'
-export const setUpHusky = 'echo "npx lint-staged" > .husky/pre-commit'
+export const initHusky = 'npx husky init';
+export const prepareHusky = 'npm run prepare';
+export const setUpHusky = 'echo "npx lint-staged" > .husky/pre-commit';

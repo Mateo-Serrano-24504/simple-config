@@ -1,1 +1,1 @@
-export * from './domain/helpers.js'
+export * from './domain/helpers.js';

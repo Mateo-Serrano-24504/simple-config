@@ -1,18 +1,18 @@
-import { execSync } from 'node:child_process'
+import { execSync } from 'node:child_process';
 
-import { Command } from './command.js'
+import { Command } from './command.js';
 
 export class CommandSilent {
-  private command: Command
+  private command: Command;
   constructor(command: string) {
     this.command = new Command(command, () => {
-      execSync(command, { stdio: 'ignore' })
-    })
+      execSync(command, { stdio: 'ignore' });
+    });
   }
   run() {
-    this.command.run()
+    this.command.run();
   }
   getCommand() {
-    return this.command.getCommand()
+    return this.command.getCommand();
   }
 }
