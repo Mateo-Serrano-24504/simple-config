@@ -134,10 +134,11 @@ echo ""
   assert_dep globals 17.0.0
 
   echo ""
-  echo "Verification succeeded"
+  echo "Dependencies installed correctly"
 
   echo ""
   echo "Stage 4: testing husky hook"
+  echo ""
 
   no_log git add .
   echo "echo \"husky-pre-commit-ran\" > $HOOK_LOG" > ./.husky/pre-commit
@@ -151,6 +152,13 @@ echo ""
     echo "✖ git commit failed"
     exit 1
   fi
+
+  echo ""
+  echo "Husky installed correctly"
+
+  echo ""
+  echo "Installation completed successfully"
+  echo ""
 )
 
 CLEANUP=true
