@@ -1,6 +1,6 @@
 {
   "name": "@mateoserrano/simple-config",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Initialize ESLint, Prettier, Husky and lint-staged for modern TypeScript projects",
   "license": "MIT",
   "author": "Mateo Serrano (https://github.com/Mateo-Serrano-24504)",
