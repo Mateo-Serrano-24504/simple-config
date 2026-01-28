@@ -53,9 +53,9 @@ After having run the script, the following dependencies will have been installed
 After having run the script, the following configuration files will have been
 created:
 
-- `eslint.config.js`
-- `prettier.config.js`
-- `lint-staged.config.js`
+- `template.eslint.config.js`
+- `template.prettier.config.js`
+- `template.lint-staged.config.js`
 - `tsconfig.json`
 
 As they are templates, you might modify any of these to suit your needs, although

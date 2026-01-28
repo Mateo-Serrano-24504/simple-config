@@ -39,10 +39,26 @@ export const devDeps: Dependency[] = [
   },
 ];
 export const devDepFiles = [
-  'eslint.config.js',
-  'prettier.config.js',
-  'lint-staged.config.js',
-  'tsconfig.build.json',
+  {
+    sourceName: 'template.eslint.config.js',
+    targetName: 'eslint.config.js',
+  },
+  {
+    sourceName: 'template.prettier.config.js',
+    targetName: 'prettier.config.js',
+  },
+  {
+    sourceName: 'template.lint-staged.config.js',
+    targetName: 'lint-staged.config.js',
+  },
+  {
+    sourceName: 'template.tsconfig.json',
+    targetName: 'tsconfig.json',
+  },
+  {
+    sourceName: 'template.tsconfig.build.json',
+    targetName: 'tsconfig.build.json',
+  },
 ];
 
 export const initHusky = 'npx husky init';

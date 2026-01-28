@@ -121,6 +121,7 @@ echo ""
   assert_file eslint.config.js
   assert_file lint-staged.config.js
   assert_file prettier.config.js
+  assert_file tsconfig.build.json
   assert_file tsconfig.json
   assert_dep typescript 5.9.3
   assert_dep eslint 9.39.1

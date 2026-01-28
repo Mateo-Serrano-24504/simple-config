@@ -30,13 +30,21 @@ describe('FileCopier', () => {
     fileCopier = new FileCopier(fileHandler as never, logger as never);
   });
   describe('copyFileToFolder', () => {
-    it('should copy files to folder', () => {
+    it('should copy files to folder with the same name', () => {
       const file = faker.system.filePath();
       const folder = faker.system.directoryPath();
       const outputFileName = join(folder, basename(file));
       fileHandler.verifyIfFileExists.mockReturnValue(true);
       fileCopier.copyFileToFolder(file, folder);
       expect(fileHandler.copyFile).toHaveBeenCalledWith(file, outputFileName);
+    });
+    it('should copy files to folder with the given name', () => {
+      const file = faker.system.filePath();
+      const folder = faker.system.directoryPath();
+      const outputFileName = basename(faker.system.filePath());
+      fileHandler.verifyIfFileExists.mockReturnValue(true);
+      fileCopier.copyFileToFolder(file, folder, outputFileName);
+      expect(fileHandler.copyFile).toHaveBeenCalledWith(file, join(folder, outputFileName));
     });
     it('should call logger.error if file does not exist', () => {
       fileHandler.verifyIfFileExists.mockReturnValue(false);

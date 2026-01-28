@@ -31,8 +31,12 @@ export const configureHusky = () => {
 export const copyConfigurationFiles = () => {
   logger.log('Copying configuration files...');
   const templatesDirectory = packageManager.getTemplatesFolderPath();
-  devDepFiles.forEach((file) => {
-    logger.log(`Copying file ${file}...`);
-    fileCopier.copyFileToFolderOrSkip(pathManager.changeDirectory(templatesDirectory, file), cwd);
+  devDepFiles.forEach(({ sourceName, targetName }) => {
+    logger.log(`Copying file ${sourceName} as ${targetName}...`);
+    fileCopier.copyFileToFolderOrSkip(
+      pathManager.changeDirectory(templatesDirectory, sourceName),
+      cwd,
+      targetName,
+    );
   });
 };

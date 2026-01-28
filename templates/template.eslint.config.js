@@ -9,11 +9,9 @@ export default tseslint.config(
     ignores: [
       'dist/**',
       'node_modules/**',
-      '**/*eslint.config.js',
-      '**/*prettier.config.js',
-      '**/*lint-staged.config.js',
-      '**/*tsconfig.json',
-      '**/*tsconfig.build.json',
+      '**/template.eslint.config.js',
+      '**/template.prettier.config.js',
+      '**/template.lint-staged.config.js',
     ],
   },
   eslint.configs.recommended,
@@ -23,7 +21,6 @@ export default tseslint.config(
     languageOptions: {
       globals: {
         ...globals.node,
-        ...globals.vitest,
       },
       sourceType: 'module',
       parserOptions: {

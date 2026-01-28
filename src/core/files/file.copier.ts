@@ -15,25 +15,27 @@ export class FileCopier {
       this.fileHandler.createFolder(folder);
     }
   }
-  copyFileToFolder(fileName: string, folder: string) {
+  copyFileToFolder(fileName: string, folder: string, newName?: string) {
     if (!this.fileHandler.verifyIfFileExists(fileName)) {
       this.logger.error(`File does not exist: ${fileName}`);
       return;
     }
     this.createFolderIfNotExist(folder);
-    const outputFileName = this.pathManager.changeDirectory(
-      folder,
-      this.pathManager.getFileBasename(fileName),
-    );
+    const newFileName = newName ?? this.pathManager.getFileBasename(fileName);
+    const outputFileName = this.pathManager.changeDirectory(folder, newFileName);
     this.fileHandler.copyFile(fileName, outputFileName);
   }
-  copyFileToFolderOrSkip(fileName: string, folder: string) {
+  copyFileToFolderOrSkip(fileName: string, folder: string, newName?: string) {
     const fileBasename = this.pathManager.getFileBasename(fileName);
     const outputFileName = this.pathManager.changeDirectory(folder, fileBasename);
     if (this.fileHandler.verifyIfFileExists(outputFileName)) {
       this.logger.log(`File ${fileBasename} already exists in ${folder}. Skipping...`);
       return;
     }
-    this.copyFileToFolder(fileName, folder);
+    if (newName) {
+      this.copyFileToFolder(fileName, folder, newName);
+    } else {
+      this.copyFileToFolder(fileName, folder);
+    }
   }
 }
