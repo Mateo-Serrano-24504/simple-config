@@ -26,6 +26,10 @@ export const devDeps: Dependency[] = [
     version: '10.1.8',
   },
   {
+    name: 'eslint-plugin-prettier',
+    version: '5.2.2',
+  },
+  {
     name: 'lint-staged',
     version: '16.2.7',
   },

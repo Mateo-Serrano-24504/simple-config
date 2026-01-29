@@ -129,6 +129,7 @@ echo ""
   assert_dep @eslint/js 9.39.1
   assert_dep prettier 3.6.2
   assert_dep eslint-config-prettier 10.1.8
+  assert_dep eslint-plugin-prettier 5.2.2
   assert_dep lint-staged 16.2.7
   assert_dep husky 9.1.7
   assert_dep globals 17.0.0
