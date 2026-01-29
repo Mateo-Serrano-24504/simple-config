@@ -36,6 +36,13 @@ fail() {
   echo "$1"
   exit 1
 }
+setup_git_for_ci() {
+  if [[ "${CI:-false}" == "true" ]]; then
+    git config user.name "CI"
+    git config user.email "ci@example.com"
+    git config --global --add safe.directory "$(pwd)"
+  fi
+}
 assert_file() {
   [[ -f "$1" ]] || fail "Missing file: $1"
   echo "✔ $1"
@@ -101,8 +108,8 @@ echo ""
 
   echo "Initiating git repository..."
   no_log git init
-  echo "package-lock.json" > .gitignore
   echo "node_modules/" >> .gitignore
+  setup_git_for_ci
   no_log git add .
   no_log git commit -m "chore: initial commit"
   echo "Git repository initiated"
